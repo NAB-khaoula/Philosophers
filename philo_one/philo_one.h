@@ -21,6 +21,7 @@ typedef struct		s_gnrl
 	char			*philosopher;
     pthread_mutex_t	lock;
     pthread_mutex_t	lock_output;
+    pthread_mutex_t	lock_output_death;
 	pthread_mutex_t	lock_death;
 	pthread_t		*thread;
 	long			time_ms;

@@ -17,15 +17,18 @@ void	*checker(void *philo)
 	philosopher = (t_threads *)philo;
 	while(1)
 	{
+		// printf("start: %ld\n", gnrl->time);
+		// printf("absolut time %ld\n", time_now());
+		// printf("|time now: %ld|\n", time_now() - gnrl->time);
+		// printf("|time limit: %ld|\n", philosopher->t_limit);
 		pthread_mutex_lock(&gnrl->lock_death);
-		if (time_now() - gnrl->time  > philosopher->t_limit)
+		if (time_now()  > philosopher->t_limit)
 		{
-			pthread_mutex_lock(&gnrl->lock_output);
 			printf("%ld\t%d\tdied\n", time_now() - gnrl->time, philosopher->index + 1);
 			pthread_mutex_unlock(&gnrl->lock);
-			pthread_mutex_unlock(&gnrl->lock_death);
 			return (NULL);
 		}
+		pthread_mutex_unlock(&gnrl->lock_death);
 	}
 }
 
@@ -37,6 +40,7 @@ void    *my_thread(void *var)
 
 	gnrl = get_struct(NULL);
 	philo = (t_threads *)var;
+	philo->t_limit = gnrl->time + gnrl->time_todie;
 	pthread_create(&philo->th, NULL, checker, philo);
 	pthread_detach(philo->th);
 	while (1)
@@ -54,7 +58,7 @@ void    *my_thread(void *var)
 		pthread_mutex_unlock(&gnrl->lock_output);
 
 		pthread_mutex_lock(&gnrl->lock_output);
-		philo->t_limit = (time_now() - gnrl->time) + gnrl->time_todie;
+		philo->t_limit = time_now() + gnrl->time_todie;
 		printf("%ld\t%d\tis eating\n", time_now() - gnrl->time, philo->index + 1);
 		pthread_mutex_unlock(&gnrl->lock_output);
 		
@@ -115,6 +119,7 @@ int main(int ac, char **av)
     pthread_mutex_init(&gnrl.lock, NULL);
     pthread_mutex_init(&gnrl.lock_death, NULL);
     pthread_mutex_init(&gnrl.lock_output, NULL);
+    pthread_mutex_init(&gnrl.lock_output_death, NULL);
 	int i = -1;
 	while (++i< gnrl.num_philo)
 	{
@@ -127,6 +132,7 @@ int main(int ac, char **av)
 	{
 		pthread_create(&gnrl.thread[i], NULL, my_thread, &philo[i]);
 		pthread_detach(gnrl.thread[i]);
+		usleep(1000);
 	}
 	pthread_mutex_lock(&gnrl.lock);
 	return (0);

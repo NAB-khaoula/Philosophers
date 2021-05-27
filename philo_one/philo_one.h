@@ -4,9 +4,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
- #include <sys/time.h>
+# include <sys/time.h>
 # include <pthread.h>
-
+# define FORK_LEFT 1
+# define FORK_RIGHT 2
+# define EAT 3
+# define SLEEP 4
+# define THINK 5
+# define DIED 6
 typedef struct		s_gnrl
 {
 	int				num_philo;
@@ -39,5 +44,10 @@ typedef struct		s_threads
 int		ft_atoi(const char *str);
 int		is_num(char *c);
 t_gnrl	*get_struct(t_gnrl *gnrl);
+long	time_now(void);
+void	*checker(void *philo);
+void	*must_die(void *var);
+void    *my_thread(void *var);
+void	display_msg(t_gnrl *gnrl, t_threads *philo, int status);
 
 #endif

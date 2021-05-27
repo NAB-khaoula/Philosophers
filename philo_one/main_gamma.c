@@ -1,33 +1,5 @@
 #include "philo_one.h"
 
-long		time_now(void)
-{
-	struct timeval time;
-	
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	*checker(void *philo)
-{
-	t_gnrl *gnrl;
-	t_threads *philosopher;
-
-	gnrl = get_struct(NULL);
-	philosopher = (t_threads *)philo;
-	while(1)
-	{
-		pthread_mutex_lock(&gnrl->lock_death);
-		if (time_now()  > philosopher->t_limit)
-		{
-			printf("%ld\t%d\tdied\n", time_now() - gnrl->time, philosopher->index + 1);
-			pthread_mutex_unlock(&gnrl->lock);
-			return (NULL);
-		}
-		pthread_mutex_unlock(&gnrl->lock_death);
-	}
-}
-
 void	*must_die(void *var)
 {
 	t_threads	*philo;
@@ -157,7 +129,7 @@ int main(int ac, char **av)
 	{
 		pthread_create(&gnrl->thread[i], NULL, my_thread, &philo[i]);
 		pthread_detach(gnrl->thread[i]);
-		usleep(1000);
+		usleep(100);
 	}
 	pthread_mutex_lock(&gnrl->lock);
 	return (0);

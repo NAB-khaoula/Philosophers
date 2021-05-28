@@ -1,5 +1,13 @@
 #include "philo_one.h"
 
+void	lock_msg(pthread_mutex_t lock, \
+t_gnrl *gnrl, t_threads *philo, int status)
+{
+	pthread_mutex_lock(&lock);
+	display_msg(gnrl, philo, status);
+	pthread_mutex_unlock(&lock);
+}
+
 void	display_msg(t_gnrl *gnrl, t_threads *philo, int status)
 {
 	if (status == FORK_LEFT)

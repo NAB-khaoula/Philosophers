@@ -30,7 +30,7 @@ void	start_threading(t_gnrl *gnrl, t_threads *philo)
 	{
 		pthread_create(&gnrl->thread[i], NULL, my_thread, &philo[i]);
 		pthread_detach(gnrl->thread[i]);
-		usleep(100);
+		usleep(10);
 	}
 	pthread_mutex_lock(&gnrl->lock);
 }
@@ -53,5 +53,8 @@ int	main(int ac, char **av)
 			return (-1);
 	init_mutex(gnrl);
 	start_threading(gnrl, philo);
+	free(philo);
+	free(gnrl->chopsticks_lock);
+	free(gnrl->thread);
 	return (0);
 }

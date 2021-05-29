@@ -20,10 +20,7 @@ typedef struct s_gnrl
 	int				time_tosleep;
 	int				n_must_eat;
 	pthread_mutex_t	*chopsticks_lock;
-	int				index;
-	int				i;
 	long			time;
-	char			*philosopher;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	lock_output;
 	pthread_mutex_t	lock_death;
@@ -53,4 +50,6 @@ t_threads *philo, int status);
 void	lock_fork(t_gnrl *gnrl, t_threads *philo);
 void	init_mutex(t_gnrl *gnrl);
 int		parsing(t_gnrl *gnrl, int ac, char **av);
+void    free_pointers(t_gnrl *gnrl);
+
 #endif

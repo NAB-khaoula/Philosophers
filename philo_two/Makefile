@@ -6,7 +6,8 @@ SRC = 	checker.c		\
 		main.c			\
 		message.c		\
 		outils.c		\
-		parsing.c
+		parsing.c		\
+		actions.c
 
 OBJ = $(SRC:.c=.o)
 

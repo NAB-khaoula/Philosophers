@@ -9,7 +9,7 @@ void	*checker(void *philo)
 	philosopher = (t_threads *)philo;
 	while (1)
 	{
-        sem_wait(gnrl->lock_death);
+		sem_wait(gnrl->lock_death);
 		if (time_now() > philosopher->t_limit)
 		{
 			sem_wait(gnrl->lock_output);

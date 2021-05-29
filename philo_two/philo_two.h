@@ -1,4 +1,3 @@
-
 #ifndef PHILO_TWO_H
 # define PHILO_TWO_H
 
@@ -29,7 +28,7 @@ typedef struct s_gnrl
 	sem_t			*lock_output;
 	sem_t			*lock_death;
 	sem_t			*lock_mustdie;
-}               	t_gnrl;
+}					t_gnrl;
 
 typedef struct s_threads
 {
@@ -39,9 +38,9 @@ typedef struct s_threads
 	long			t_limit;
 }					t_threads;
 
-int     ft_atoi(const char *str);
-t_gnrl  *get_struct(t_gnrl *gnrl);
-int     is_num(char *c);
+int		ft_atoi(const char *str);
+t_gnrl	*get_struct(t_gnrl *gnrl);
+int		is_num(char *c);
 long	time_now(void);
 int		parsing(t_gnrl *gnrl, int ac, char **av);
 void	display_msg(t_gnrl *gnrl, t_threads *philo, int status);
@@ -50,5 +49,7 @@ void	*my_thread(void *var);
 void	dying_check(t_gnrl *gnrl, t_threads *philo);
 void	start_threading(t_gnrl *gnrl, t_threads *philo);
 void	*must_die(void *var);
+void	init_sem(t_gnrl *gnrl);
+void	eating(t_gnrl *gnrl, t_threads *philo);
 
 #endif

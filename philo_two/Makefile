@@ -1,9 +1,9 @@
-NAME = philo_one
+NAME = philo_two
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
-SRC = 	f_thread.c		\
-		main.c	\
+SRC = 	checker.c		\
+		main.c			\
 		message.c		\
 		outils.c		\
 		parsing.c

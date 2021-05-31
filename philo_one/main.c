@@ -30,7 +30,7 @@ void	start_threading(t_gnrl *gnrl, t_threads *philo)
 	{
 		pthread_create(&gnrl->thread[i], NULL, my_thread, &philo[i]);
 		pthread_detach(gnrl->thread[i]);
-		usleep(10);
+		usleep(100);
 	}
 	pthread_mutex_lock(&gnrl->lock);
 }

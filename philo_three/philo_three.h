@@ -48,5 +48,6 @@ void	init_sem(void);
 void	check_n_eating(void);
 void	dying_check(void);
 int		is_num(char *c);
+void	start_forking(t_gnrl *gnrl);
 
 #endif

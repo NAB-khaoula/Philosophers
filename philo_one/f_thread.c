@@ -36,7 +36,6 @@ void	*must_die(void *var)
 		if (gnrl->n_must_eat == 0)
 		{
 			pthread_mutex_lock(&gnrl->lock_output);
-			printf("DONE");
 			pthread_mutex_unlock(&gnrl->lock);
 			return (NULL);
 		}

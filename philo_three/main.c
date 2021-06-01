@@ -66,14 +66,12 @@ void	*my_process(void)
 	return (NULL);
 }
 
-void	start_forking(void)
+void	start_forking(t_gnrl *gnrl)
 {
 	int			i;
 	int			*pid;
-	t_gnrl		*gnrl;
 
 	i = -1;
-	gnrl = get_struct(NULL);
 	pid = (int *)malloc(sizeof(int) * gnrl->num_philo);
 	gnrl->time = time_now();
 	sem_wait(gnrl->lock);
@@ -93,6 +91,7 @@ void	start_forking(void)
 	sem_wait(gnrl->lock);
 	while (++i < gnrl->num_philo)
 		kill(pid[i], SIGKILL);
+	free(pid);
 }
 
 int	main(int ac, char **av)
@@ -110,6 +109,7 @@ int	main(int ac, char **av)
 		if (parsing(gnrl, ac, av))
 			return (-1);
 	init_sem();
-	start_forking();
+	start_forking(gnrl);
+	free(gnrl);
 	return (0);
 }

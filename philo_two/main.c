@@ -38,7 +38,6 @@ void	*must_die(void *var)
 		if (gnrl->n_must_eat == 0)
 		{
 			sem_wait(gnrl->lock_output);
-			printf("DONE\n");
 			sem_post(gnrl->lock);
 			return (NULL);
 		}

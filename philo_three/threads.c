@@ -36,7 +36,6 @@ void	*must_die(void *var)
 		if (nb_eat == gnrl->num_philo)
 		{
 			sem_wait(gnrl->lock_output);
-			printf("DONE\n");
 			sem_post(gnrl->lock);
 			return (NULL);
 		}

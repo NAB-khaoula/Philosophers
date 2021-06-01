@@ -18,5 +18,6 @@ void	*checker(void *philo)
 			return (NULL);
 		}
 		sem_post(gnrl->lock_death);
+		usleep(500);
 	}
 }

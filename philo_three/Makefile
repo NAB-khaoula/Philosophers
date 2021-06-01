@@ -6,7 +6,9 @@ CC = gcc
 
 SRC = 	main.c		\
 		outils.c	\
-		parsing.c 		
+		parsing.c 	\
+		init_semaphore.c	\
+		threads.c
 
 OBJ = $(SRC:.c=.o)
 

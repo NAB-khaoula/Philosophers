@@ -19,6 +19,7 @@ void	*checker(void *philo)
 			return (NULL);
 		}
 		pthread_mutex_unlock(&gnrl->lock_death);
+		usleep(500);
 	}
 }
 

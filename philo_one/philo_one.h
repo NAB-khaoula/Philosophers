@@ -50,6 +50,6 @@ t_threads *philo, int status);
 void	lock_fork(t_gnrl *gnrl, t_threads *philo);
 void	init_mutex(t_gnrl *gnrl);
 int		parsing(t_gnrl *gnrl, int ac, char **av);
-void    free_pointers(t_gnrl *gnrl);
+void	free_pointers(t_gnrl *gnrl);
 
 #endif

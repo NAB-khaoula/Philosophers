@@ -7,7 +7,7 @@ t_gnrl	*token(char **av)
 
 	i = 0;
 	gnrl = get_struct(NULL);
-		while (av[++i])
+	while (av[++i])
 	{
 		if (!(is_num(av[i])))
 		{
